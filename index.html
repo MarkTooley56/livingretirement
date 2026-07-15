@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Living Retirement — Retirement Transition Coaching</title>
+<meta name="description" content="Living Retirement is a structured coaching programme helping NHS and health-sector professionals navigate the retirement transition with greater awareness, confidence and curiosity.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2B2B28;
+    --ink-soft: #5A5A54;
+    --paper: #F7F5F1;
+    --paper-raised: #FFFFFF;
+    --deep: #1F3B3A;
+    --deep-soft: #2C4A48;
+    --sage: #8FA68E;
+    --sage-pale: #E4EAE2;
+    --gold: #C9A66B;
+    --line: #DEDAD0;
+    --max-w: 1080px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.65;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    color: var(--deep);
+    line-height: 1.25;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ===== NAV ===== */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(247, 245, 241, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+  .nav-brand {
+    font-family: 'Lora', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--deep);
+    letter-spacing: 0.01em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible { color: var(--deep); }
+  .nav-cta {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--deep);
+    color: var(--paper) !important;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+  }
+  .nav-cta:hover, .nav-cta:focus-visible { background: var(--deep-soft); }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding: 96px 0 88px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-eyebrow {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+    max-width: 18ch;
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--ink);
+  }
+  .hero p.lede {
+    font-size: 1.2rem;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin-bottom: 36px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 28px;
+    background: var(--deep);
+    color: var(--paper);
+    text-decoration: none;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 0.96rem;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .btn-primary:hover, .btn-primary:focus-visible { background: var(--deep-soft); transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-block;
+    padding: 14px 28px;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 0.96rem;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .btn-secondary:hover, .btn-secondary:focus-visible { border-color: var(--sage); background: var(--paper-raised); }
+
+  /* ===== SECTION GENERIC ===== */
+  section { padding: 84px 0; }
+  .section-tight { padding: 64px 0; }
+  .eyebrow {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  h2 {
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    margin-bottom: 20px;
+  }
+  .lead-text {
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+    max-width: 64ch;
+  }
+
+  /* ===== ABOUT / PURPOSE ===== */
+  .about { border-bottom: 1px solid var(--line); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-top: 40px;
+  }
+  .about-grid p { color: var(--ink-soft); margin-bottom: 18px; }
+  .pull-quote {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--deep);
+    border-left: 3px solid var(--gold);
+    padding-left: 24px;
+    line-height: 1.5;
+  }
+  @media (max-width: 800px) {
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ===== JOURNEY (signature element) ===== */
+  .journey {
+    background: var(--deep);
+    color: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+  .journey .eyebrow { color: var(--gold); }
+  .journey h2 { color: var(--paper); }
+  .journey .lead-text { color: rgba(247,245,241,0.78); }
+
+  .stage-track {
+    margin-top: 56px;
+    position: relative;
+  }
+  .stage-line {
+    position: absolute;
+    top: 17px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(247,245,241,0.22);
+  }
+  .stages {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    position: relative;
+  }
+  .stage {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .stage-marker {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--deep);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lora', serif;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+  }
+  .stage h3 {
+    color: var(--paper);
+    font-size: 1.08rem;
+    margin-bottom: 6px;
+  }
+  .stage p {
+    font-size: 0.92rem;
+    color: rgba(247,245,241,0.7);
+    max-width: 26ch;
+  }
+  .stage-note {
+    margin-top: 44px;
+    font-size: 0.92rem;
+    color: rgba(247,245,241,0.62);
+    border-top: 1px solid rgba(247,245,241,0.18);
+    padding-top: 24px;
+  }
+  @media (max-width: 800px) {
+    .stages { grid-template-columns: 1fr; gap: 32px; }
+    .stage-line { display: none; }
+  }
+
+  /* ===== WHO IT'S FOR ===== */
+  .audience { border-bottom: 1px solid var(--line); }
+  .audience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .audience-card {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 32px;
+  }
+  .audience-card .tag {
+    display: inline-block;
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .audience-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+  }
+  .audience-card p {
+    color: var(--ink-soft);
+    font-size: 0.97rem;
+  }
+  .audience-footer {
+    margin-top: 28px;
+    color: var(--ink-soft);
+    font-size: 0.97rem;
+    font-style: italic;
+  }
+  @media (max-width: 760px) {
+    .audience-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== FOUNDERS ===== */
+  .founders { border-bottom: 1px solid var(--line); }
+  .founder {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 44px;
+    padding: 44px 0;
+    border-top: 1px solid var(--line);
+  }
+  .founder:first-of-type { border-top: none; margin-top: 40px; }
+  .founder-id {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .founder-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--sage-pale);
+    color: var(--deep);
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .founder-id h3 {
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+  }
+  .founder-id .role {
+    font-size: 0.86rem;
+    color: var(--sage);
+    font-weight: 500;
+  }
+  .founder-id .creds {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+  .founder-bio p {
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+    font-size: 0.98rem;
+  }
+  .founder-bio p:last-child { margin-bottom: 0; }
+  @media (max-width: 760px) {
+    .founder { grid-template-columns: 1fr; gap: 20px; }
+  }
+
+  /* ===== TESTIMONIALS (placeholder) ===== */
+  .testimonials {
+    border-bottom: 1px solid var(--line);
+  }
+  .testimonial-placeholder {
+    margin-top: 32px;
+    border: 1px dashed var(--line);
+    border-radius: 4px;
+    padding: 40px;
+    text-align: center;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+
+  /* ===== CONTACT ===== */
+  .contact {
+    background: var(--sage-pale);
+  }
+  .contact-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .contact h2 { margin-bottom: 10px; }
+  .contact p { color: var(--ink-soft); max-width: 48ch; }
+  .contact-cta { flex-shrink: 0; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 36px 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  /* Accessibility: focus states */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="nav-brand">Living Retirement</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#journey">The Journey</a></li>
+      <li><a href="#founders">Your Coaches</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Get in touch</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="hero-eyebrow">Retirement Transition Coaching</p>
+    <h1>Retirement is not a destination. <em>It's an unfolding transition.</em></h1>
+    <p class="lede">Living Retirement is a structured coaching programme helping you navigate the shift beyond work with greater awareness, confidence and curiosity — not a perfect plan, but a clearer path.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#contact">Start the conversation</a>
+      <a class="btn-secondary" href="#journey">See how it works</a>
+    </div>
+  </div>
+</header>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <p class="eyebrow">The Programme</p>
+    <h2>Structured, accelerated thinking for one of life's biggest transitions</h2>
+    <div class="about-grid">
+      <div>
+        <p>Living Retirement was developed by Dr Andy Nevill and Professor Mark Tooley, who co-founded the programme and wrote all of its material from their own coaching and lived experience.</p>
+        <p>It provides an opportunity for structured, accelerated thinking — helping to compress the time it can take to make sense of this transition. The programme constructively challenges your thinking and encourages deep reflection on what matters most: the things that give you energy and bring you joy.</p>
+      </div>
+      <div>
+        <p class="pull-quote">"The purpose of this programme is not to produce a perfect plan, but to help you navigate this transition with greater awareness, confidence, and curiosity."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="journey" id="journey">
+  <div class="wrap">
+    <p class="eyebrow">How It Works</p>
+    <h2>Four stages, one unfolding journey</h2>
+    <p class="lead-text">An introductory session, followed by four coaching sessions — each paired with a guided exercise to complete beforehand.</p>
+
+    <div class="stage-track">
+      <div class="stage-line"></div>
+      <div class="stages">
+        <div class="stage">
+          <div class="stage-marker">01</div>
+          <div>
+            <h3>Finding out</h3>
+            <p>Understanding more about yourself — your values, identity and what has shaped you.</p>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="stage-marker">02</div>
+          <div>
+            <h3>Facing</h3>
+            <p>Confronting the retirement transition honestly, including its real challenges.</p>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="stage-marker">03</div>
+          <div>
+            <h3>Looking ahead</h3>
+            <p>Building a clearer sense of what the next chapter could look like for you.</p>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="stage-marker">04</div>
+          <div>
+            <h3>Taking action</h3>
+            <p>Turning reflection into grounded, confident next steps.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="stage-note">Each stage is supported by guided exercises completed in your own time, so coaching sessions build on real reflection rather than starting cold.</p>
+  </div>
+</section>
+
+<section class="audience">
+  <div class="wrap">
+    <p class="eyebrow">Who It's For</p>
+    <h2>Built for people who've worked in health and care</h2>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <span class="tag">Approaching retirement</span>
+        <h3>Preparing well, ahead of time</h3>
+        <p>For people approaching retirement from the NHS or a similar health-related setting who want to feel more informed, prepared and in control of the transition ahead — rather than reacting to it once it arrives.</p>
+      </div>
+      <div class="audience-card">
+        <span class="tag">Already retired</span>
+        <h3>Finding the right path</h3>
+        <p>For people who have already retired and may be struggling with parts of the transition — perhaps sensing they haven't yet found the right path for themselves, and wanting space to work that out.</p>
+      </div>
+    </div>
+    <p class="audience-footer">That said, the themes this programme addresses — identity, purpose, connection, and what comes next — are relevant to everyone facing this transition, wherever they've worked.</p>
+  </div>
+</section>
+
+<section class="founders" id="founders">
+  <div class="wrap">
+    <p class="eyebrow">Your Coaches</p>
+    <h2>Created by two people who've lived this transition themselves</h2>
+
+    <div class="founder">
+      <div class="founder-id">
+        <div class="founder-avatar">AN</div>
+        <h3>Dr Andy Nevill</h3>
+        <p class="role">Retirement Transition Coach</p>
+        <p class="creds">Chartered Engineer<br>Chartered Manager<br>Chartered Scientist</p>
+      </div>
+      <div class="founder-bio">
+        <p>Andy's work focuses on helping people make sense of the transition beyond work, particularly after careers that have shaped routines, identity, relationships and ways of thinking over many years. As the structure work provides begins to fall away, questions about purpose, connection and how to live often become more pressing — and Andy helps people step back, think clearly, and move forward with greater intention.</p>
+        <p>He brings a distinctive mix of technical leadership, organisational development and coaching experience, including extensive work within the NHS supporting clinicians and technical specialists moving into leadership roles. With training in executive coaching, mentoring and workplace mediation, Andy is known for a calm, thoughtful and practical style — creating space for honest reflection and grounded decision-making during periods of uncertainty.</p>
+        <p>Outside this work, Andy has a longstanding interest in sustainable living and the environment, having taught himself property construction and renovation, and maintains a creative practice working with wood, metal and masonry inspired by natural geometry.</p>
+      </div>
+    </div>
+
+    <div class="founder">
+      <div class="founder-id">
+        <div class="founder-avatar">MT</div>
+        <h3>Professor Mark Tooley</h3>
+        <p class="role">Retirement Transition Coach</p>
+        <p class="creds">Fellow, Royal Academy of Engineering<br>Chartered Engineer<br>Chartered Scientist</p>
+      </div>
+      <div class="founder-bio">
+        <p>After many years in senior clinical, scientific and leadership roles within the NHS, Mark became increasingly interested in the human side of retirement — and the challenges people face when long-established routines and professional identities begin to change. His own experience of retirement played an important role in shaping Living Retirement.</p>
+        <p>Mark helps people think clearly about purpose, identity and relationships, encouraging thoughtful exploration and the confidence to approach retirement as an opportunity for renewal rather than simply an ending. During his NHS career he led major scientific departments and served as Director of Research within his hospital, contributing at board level to organisational change.</p>
+        <p>Outside his professional work, Mark enjoys time outdoors in his garden and allotment, running around his neighbourhood, and playing classical piano — especially Debussy and French repertoire.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="wrap">
+    <p class="eyebrow">In Their Words</p>
+    <h2>What clients say</h2>
+    <div class="testimonial-placeholder">
+      Testimonials are being gathered and will appear here shortly.
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-inner">
+    <div>
+      <h2>Ready to take this further?</h2>
+      <p>Get in touch to find out more about the programme, ask a question, or take the first step.</p>
+    </div>
+    <div class="contact-cta">
+      <a class="btn-primary" href="mailto:Andy-livingretirement@pm.me">Andy-livingretirement@pm.me</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    &copy; 2026 Living Retirement. Created by Dr Andy Nevill &amp; Professor Mark Tooley.
+  </div>
+</footer>
+
+</body>
+</html>
